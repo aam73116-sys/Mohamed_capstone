@@ -522,8 +522,11 @@ img { max-width: 100%; height: auto; display: block; }
 
 /* Scroll-reveal: elements start faded and slightly lower, then ease up into
    place when JS adds .is-visible. */
-.reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.6s ease, transform 0.6s ease; }
-.reveal.is-visible { opacity: 1; transform: none; }
+/* NOTE: the reveal animates position only (no opacity) so text is always
+   fully visible — this keeps color contrast (and the Lighthouse accessibility
+   score) safe even while the animation is still running. */
+.reveal { transform: translateY(22px); transition: transform 0.6s ease; }
+.reveal.is-visible { transform: none; }
 
 /* ---------------------------------------------------------------------
    REDUCED MOTION: if the visitor asked their system for less motion, turn
